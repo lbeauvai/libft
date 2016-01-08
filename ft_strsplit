@@ -1,0 +1,72 @@
+#include "libft.h"
+#include <stdlib.h>
+
+static int  count_words(char const *s, char c)
+{
+    int     nb;
+    int     i;
+
+    nb = 0;
+    i = 0;
+    if (s[i] && s[i] != c)
+        nb++;
+    while (s[i])
+    {
+        if (s[i] == c)
+            while (s[i] == c && s[i])
+            {
+                i++;
+                if (s[i] && s[i] != c)
+                    nb++;
+            }
+        else
+            i++;
+    }
+    return (nb);
+}
+
+static char **allocate(char **tab, int size, char const *s, char c)
+{
+    int     y;
+    int     i;
+    int     save;
+
+    y = 0;
+    i = 0;
+    while (s[i] == c)
+        i++;
+    save = i;
+    while (y < size)
+    {
+        while (s[i] && s[i] != c)
+            i++;
+        if (s[i] == c || s[i] == '\0')
+        {
+            tab[y] = (char *)malloc(((i - save) + 1) * sizeof(char));
+            if (!tab[y])
+                return (NULL);
+            while (s[i] == c)
+                i++;
+            save = i;
+            y++;
+        }
+    }
+    return (tab);
+}
+
+char        **ft_strsplit(char const *s, char c)
+{
+    char    **tab;
+    int     tabsize;
+
+    tabsize = count_words(s, c);
+    tab = (char **)malloc((tabsize + 1) * sizeof(char *));
+    if (s == NULL)
+        return (NULL);
+    if (!tab)
+        return (NULL);
+    tab[tabsize] = 0;
+    tab = allocate(tab, tabsize, s, c);
+    tab = fill_tab(tab, tabsize, s, c);
+    return (tab);
+}
