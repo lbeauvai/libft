@@ -1,0 +1,21 @@
+#include <stdlib.h>
+#include "libft.h"
+
+char        *ft_strsub(const char *s, unsigned int start, size_t len)
+{
+    size_t  count;
+    char    *dest;
+
+    if (!(dest = (char *)malloc(sizeof(char) * (len + 1))))
+        return (NULL);
+    if (s == NULL || dest == NULL)
+        return (NULL);
+    count = 0;
+    while (count < len)
+    {
+        dest[count] = s[start + count];
+        count++;
+    }
+    dest[count] = '\0';
+    return (dest);
+}
