@@ -1,0 +1,19 @@
+#include "libft.h"
+
+char                *ft_strmapi(const char *s, char (*f)(unsigned int, char))
+{
+    char            *dest;
+    unsigned int    i;
+
+    i = (unsigned int)ft_strlen(s);
+    if (!(dest = (char *)malloc((i + 1) * sizeof(*dest))))
+        return (NULL);
+    i = 0;
+    while (s[i])
+    {
+        dest[i] = f(i, s[i]);
+        i++;
+    }
+    dest[i] = '\0';
+    return (dest);
+}
