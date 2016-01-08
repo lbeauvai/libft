@@ -1,0 +1,23 @@
+#include "libft.h"
+
+char        *ft_strncat(char *dest, char *src, size_t n)
+{
+    size_t  i;
+    size_t  j;
+
+    i = ft_strlen(dest);
+    j = 1;
+    if (n > 0)
+    {
+        dest[i] = src[0];
+        i++;
+        while (src[j] != '\0' && j < n)
+        {
+            dest[i] = src[j];
+            i++;
+            j++;
+        }
+        dest[i] = '\0';
+    }
+    return (dest);
+}
