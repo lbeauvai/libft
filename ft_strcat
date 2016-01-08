@@ -1,0 +1,17 @@
+#include "libft.h"
+
+char    *ft_strcat(char *dest, const char *src)
+{
+    int     count;
+    size_t  lenght;
+
+    lenght = ft_strlen(dest);
+    count = 0;
+    while (src[count] != '\0')
+    {
+        dest[count + lenght] = src[count];
+        count++;
+    }
+    dest[count + lenght] = '\0';
+    return (dest);
+}
