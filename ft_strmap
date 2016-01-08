@@ -1,0 +1,22 @@
+#include "libft.h"
+
+char        *ft_strmap(const char *s, char (*f)(char))
+{
+    char    *dest;
+    int     count;
+
+    if (!(dest = ft_strnew(ft_strlen(s))))
+        return (NULL);
+    count = 0;
+    if (s && f)
+    {
+        while (s[count] != '\0')
+        {
+            dest[count] = f(s[count]);
+            count++;
+        }
+        dest[count] = '\0';
+        return (dest);
+    }
+    return (NULL);
+}
