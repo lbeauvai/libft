@@ -1,0 +1,18 @@
+#include "libft.h"
+
+char        *ft_strdup(char *str)
+{
+    int     count;
+    char    *dest;
+
+    count = 0;
+    if (!(dest = (char *)malloc(sizeof(*dest) * ft_strlen(str) + 1)))
+        return (NULL);
+    while (str[count])
+    {
+        dest[count] = str[count];
+        count++;
+    }
+    dest[count] = '\0';
+    return (dest);
+}
